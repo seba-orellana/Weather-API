@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Ubuntu:wght@300&display=swap');
+
+:root {
+  font-family: 'Quicksand', sans-serif;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.imagen {
+  display: flex;
+  justify-content: center;
+  height: 300px;
+}
+
+.container {
+  display: flex;
+  width: 75vw;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 40px;
+}
+
+.temp {
+  padding: 0;
+  margin: 0;
+  font-size: 125px;
+}
+
+.ciudad {
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.sub-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+}
+
+.text {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.value {
+  padding: 0 0 5px 0;
+  margin: 0;
+  font-weight: 600;
+  font-size: 30px;
+}
+
+.created {
+  position: absolute;
+  top: 95vh;
+  right: 1vh;
+}
+
+button {
+  min-height: 50px;
+  border: none;
+  margin: 4px 2px;
+  font-size: 30px;
+  border-radius: 17px;
+  padding: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  width: 200px;
+}
+
+button:active {
+  background-color: #433a3a;
+}
