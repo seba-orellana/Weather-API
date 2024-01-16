@@ -1,7 +1,15 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import React from 'react'
-import imgDay from './assets/day.svg'
+
+import day from './assets/day.svg'
+import cloudy from './assets/cloudy.svg'
+import cloudyDay from './assets/cloudy-day.svg'
+import cloudyNight from './assets/cloudy-night.svg'
+import night from './assets/night.svg'
+import rainy from './assets/rainy.svg'
+import thunder from './assets/thunder.svg'
+
 import axios from 'axios'
 import './App.css'
 
@@ -24,7 +32,16 @@ function App() {
   return (
     <>
     <div className="imagen">
-      <img src={imgDay} alt="imagen_weather" />
+      { data.current ?
+        [2, 3].includes(data.current.icon_num) ? <img src={ day } alt="imagen_dia" /> :
+        [7, 8, 9].includes(data.current.icon_num) ? <img src={ cloudy } alt="imagen_nubes" /> : 
+        [10, 11, 12, 13].includes(data.current.icon_num) ? <img src={ rainy } alt="imagen_lluvia" /> :
+        [26, 27, 28].includes(data.current.icon_num) ? <img src={ night } alt="imagen_noche" /> :
+        [14, 15, 33].includes(data.current.icon_num) ? <img src={ thunder } alt="imagen_tormenta" /> :
+        [14, 15, 33].includes(data.current.icon_num) ? <img src={ thunder } alt="imagen_tormenta" /> :
+        [4, 5, 6].includes(data.current.icon_num) ? <img src={ cloudyDay } alt="imagen_dia_nublado" /> :
+        [29, 30, 31].includes(data.current.icon_num) ? <img src={ cloudyNight } alt="imagen_noche_nublado" /> :
+        null : null }
     </div>
 
     <div className="container">
@@ -34,13 +51,13 @@ function App() {
 
     <div className="sub-container">
       <div className="box">
-        <p className='value'>35 °C</p>
-        <p className='text'>Sensacion termica</p>
+        { data.current? <p className='value'>{data.current.cloud_cover} %</p> : null }
+        <p className='text'>Cielo cubierto</p>
       </div>
 
       <div className="box">
-        <p className='value'>60%</p>
-        <p className='text'>Humedad</p>
+        { data.current? <p className='value'>{data.current.precipitation.total}</p> : null }
+        <p className='text'>Precip. Acum</p>
       </div>
 
       <div className="box">

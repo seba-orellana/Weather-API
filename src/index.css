@@ -19,7 +19,9 @@ body {
 .imagen {
   display: flex;
   justify-content: center;
+  height: auto;
   height: 300px;
+  overflow: visible;
 }
 
 .container {
@@ -28,6 +30,7 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   padding-bottom: 40px;
+  max-width: 500px;
 }
 
 .temp {
