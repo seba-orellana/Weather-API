@@ -56,6 +56,11 @@ body {
 
 .sub-container {
   display: flex;
+  flex-direction: column;
+}
+
+.infoBox {
+  display: flex;
   justify-content: space-around;
 }
 
@@ -63,6 +68,17 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 40px;
+}
+
+.errorIcon {
+  max-width: 300px;
+  max-height: 300px;
+  margin-bottom: 45px;
+}
+
+.errorMsg {
+  font-size: 35px;
+  font-weight: bolder;
 }
 
 .text {

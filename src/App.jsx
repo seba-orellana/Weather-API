@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useEffect } from 'react'
 import React from 'react'
 
 import day from './assets/day.svg'
@@ -18,6 +17,7 @@ function App() {
 
   const [city, setCity] = useState('')
   const [data, setData] = useState({})
+  const [errorValue, setErrorValue] = useState({error: 'null'})
   const [name, setName] = useState('')
   const [inputValue, setInputValue] = useState('')
 
@@ -30,8 +30,33 @@ function App() {
         setData(response.data)
         setInputValue('')
       } )).catch((error => {
-        setData(error.code)
+        setErrorValue(error)
+        setData('')
+        setInputValue('')
       }))
+    }
+  }
+
+  const iconSetup = () => {
+    if (!data.current.icon_num)
+      return (<img src={ errorImg } alt="imagen_error" />) 
+    switch (data.current.icon_num) {
+      case 7: case 8: case 9:
+        return (<img src={ cloudy } alt="imagen_nubes" />)
+      case 2: case 3:
+        return (<img src={ day } alt="imagen_dia" />)
+      case 10: case 11: case 12: case 13:
+        return (<img src={ rainy } alt="imagen_lluvia" />)
+      case 26: case 27: case 28:
+        return (<img src={ night } alt="imagen_noche" />)
+      case 14: case 15: case 33:
+        return (<img src={ thunder } alt="imagen_tormenta" />)
+      case 4: case 5: case 6:
+        return (<img src={ cloudyDay } alt="imagen_dia_nublado" />)
+      case 29: case 30: case 31:
+        return (<img src={ cloudyNight } alt="imagen_noche_nublado" />)
+      default:
+        null      
     }
   }
 
@@ -49,15 +74,7 @@ function App() {
     </div>
 
     <div className="imagen">
-      { (data.current) ?
-        [2, 3].includes(data.current.icon_num) ? <img src={ day } alt="imagen_dia" /> :
-        [7, 8, 9].includes(data.current.icon_num) ? <img src={ cloudy } alt="imagen_nubes" /> : 
-        [10, 11, 12, 13].includes(data.current.icon_num) ? <img src={ rainy } alt="imagen_lluvia" /> :
-        [26, 27, 28].includes(data.current.icon_num) ? <img src={ night } alt="imagen_noche" /> :
-        [14, 15, 33].includes(data.current.icon_num) ? <img src={ thunder } alt="imagen_tormenta" /> :
-        [4, 5, 6].includes(data.current.icon_num) ? <img src={ cloudyDay } alt="imagen_dia_nublado" /> :
-        [29, 30, 31].includes(data.current.icon_num) ? <img src={ cloudyNight } alt="imagen_noche_nublado" /> :
-        null : null }
+      { data.current ? iconSetup() : null }
     </div>
 
     <div className="container">
@@ -69,19 +86,28 @@ function App() {
     </div>
 
     <div className="sub-container">
-      <div className="box">
-        { data.current ?
-        <> <p className='value'>{data.current.cloud_cover} %</p>
-        <p className='text'>Cielo cubierto</p>
-        </> : null }
+
+      <div className="errorBox">
+        { (errorValue.error != null) || data.current ? null :
+          <> <img src={ errorImg } className='errorIcon' alt="imagen_error" />
+          <p className='errorMsg'>Error! Verifique la información</p> </> }
       </div>
 
-      <div className="box">
-        { data.current ?
-        <>
-        <p className="value">{ data.current.wind.speed} m/s</p>
-        <p className='text'>Viento</p>
-        </> : null }
+      <div className="infoBox">
+        <div className="box">
+          { data.current ?
+          <> <p className='value'>{data.current.cloud_cover} %</p>
+          <p className='text'>Cielo cubierto</p>
+          </> : null }
+        </div>
+
+        <div className="box">
+          { data.current ?
+          <>
+          <p className="value">{ data.current.wind.speed} m/s</p>
+          <p className='text'>Viento</p>
+          </> : null }
+        </div>
       </div>
     </div>
 
