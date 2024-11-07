@@ -21,7 +21,7 @@ function App() {
   const [name, setName] = useState('')
   const [inputValue, setInputValue] = useState('')
 
-  const weather = `https://www.meteosource.com/api/v1/free/point?place_id=${city}&sections=current&language=en&units=metric&key=x8ckzortw8q1zliipgfqfolmsupk8i2i23j41m4o`
+  const weather = `https://www.meteosource.com/api/v1/free/point?place_id=${city}&sections=current&language=en&units=metric&key=...`
 
   const checkData = (event) => {
     if (event) {
